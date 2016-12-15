@@ -4,13 +4,23 @@ import {
   StyleSheet,
   Text,
   View,
-  Navigator
+  Navigator,
+  TouchableHighlight
 } from 'react-native';
 
 import Login from './Login';
+import Profile from './Profile';
+import Search from './Search';
+import Visualization1 from './Visualization1';
+import Visualization2 from './Visualization2';
+
 
 const routes = [
-  { component: Login, title: 'Login'}
+  { component: Login, title: 'Login'},
+  { component: Profile, title: 'Profile'},
+  { component: Search, title:  'Search'},
+  { component: Visualization1, title: 'Visualization1'},
+  { component: Visualization2, title: 'Visualization2'}
 ];
 
 export default class App extends Component {
@@ -21,8 +31,8 @@ export default class App extends Component {
   render() {
       return (
         <Navigator style={styles.navigator}
-          initialRoute={routes[0]}
-          initialRouteStack={routes}
+          initialRoute={ routes[0] }
+          initialRouteStack={ routes }
           renderScene={(route, navigator) => {
             let RouteComponent = route.component;
             return (
@@ -32,7 +42,7 @@ export default class App extends Component {
           navigationBar={
              <Navigator.NavigationBar
                style={ styles.nav }
-               routeMapper={NavigationBarRouteMapper} />
+               routeMapper={ NavigationBarRouteMapper } />
              }
         />
     );
@@ -63,7 +73,7 @@ var NavigationBarRouteMapper = {
   },
 
   Title(route, navigator, index, navState) {
-    return <Text style={ styles.navTitle }>googbrarian</Text>
+    return <Text style={ styles.navTitle }>BEN stinks</Text>
   }
 };
 
@@ -87,6 +97,6 @@ const styles = StyleSheet.create({
   },
   nav: {
     height: 50,
-    backgroundColor: '#1E77E2',
+    backgroundColor: 'blue',
   }
 });

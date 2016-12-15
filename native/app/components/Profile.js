@@ -7,14 +7,14 @@ import {
   View,
 } from 'react-native';
 
-export default class Login extends Component {
+export default class Profile extends Component {
   constructor(props) {
     super(props)
   }
 
   render() {
     return (
-        <Text>LOGIN</Text>
+        <Text>Profile</Text>
     )
   }
 }
