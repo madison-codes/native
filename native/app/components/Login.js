@@ -7,12 +7,16 @@ import {
   View,
 } from 'react-native';
 
+import userContainer from '../containers/userContainer'
+import Search from './Search'
 import Auth0Lock from 'react-native-lock';
-import userContainer from '../containers/userContainer';
-var credentials = require('../../authO');
-var lock = new Auth0Lock(credentials);
+var lock = new Auth0Lock({
+  clientId: 'ZZg7eXSjppAb8SaO3vwHc2MOqLpnUYl5',
+  domain: 'bcgodfrey91.auth0.com'
+});
+import grabDataContainer from '../containers/grabDataContainer';
 
-export default class Login extends Component {
+class Login extends Component {
   constructor(props) {
     super(props);
   }
@@ -21,7 +25,7 @@ export default class Login extends Component {
     return (
       <View>
         <TouchableHighlight
-        onPress = { this.onLogin.bind(this) }>
+          onPress = { this.onLogin.bind(this) }>
           <Text>LOGIN</Text>
         </TouchableHighlight>
       </View>
@@ -37,11 +41,11 @@ export default class Login extends Component {
           console.log(err);
           return;
         }
+        getUser(profile)
         this.props.navigator.push({
-          title: 'Search for products',
+          title: 'Search for Products',
           token: token
         })
-        getUser(profile)
     })
   }
 }
