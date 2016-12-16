@@ -6,36 +6,36 @@ import {
   TouchableHighlight,
   View,
 } from 'react-native';
-
-import userContainer from '../containers/userContainer'
-import Search from './Search'
 import Auth0Lock from 'react-native-lock';
+import userContainer from '../containers/userContainer';
+import Search from './Search';
+import grabDataContainer from '../containers/grabDataContainer';
+
 var credentials = require('../../auth0')
 var lock = new Auth0Lock(credentials);
-import grabDataContainer from '../containers/grabDataContainer';
 
   class Login extends Component{
     constructor (props) {
-     super(props)
+     super(props);
    }
 
     render() {
       return (
-        <View style={styles.container}>
-          <View style={styles.messageBox}>
-            <Text style={styles.title}>Native Hunt</Text>
+        <View style={ styles.container }>
+          <View style={ styles.messageBox }>
+            <Text style={ styles.title }>Native Hunt</Text>
           </View>
           <TouchableHighlight
-            style={styles.signInButton}
+            style={ styles.signInButton }
             underlayColor='#949494'
-            onPress={this._onLogin.bind(this)}>
+            onPress={ () => this.onLogin() }>
             <Text>Log In</Text>
           </TouchableHighlight>
         </View>
       );
     }
 
-    _onLogin() {
+    onLogin() {
       const { getUser } = this.props
 
       lock.show({
@@ -47,14 +47,14 @@ import grabDataContainer from '../containers/grabDataContainer';
           getUser(profile)
           this.props.navigator.push({
             component: Search,
-            title: 'Search for books',
+            title: 'Search for products',
             token: token
           })
       })
     }
   }
 
-  export default userContainer(Login)
+  export default userContainer(Login);
 
   const styles = StyleSheet.create({
     container: {
