@@ -10,10 +10,8 @@ import {
 import userContainer from '../containers/userContainer'
 import Search from './Search'
 import Auth0Lock from 'react-native-lock';
-var lock = new Auth0Lock({
-  clientId: 'ZZg7eXSjppAb8SaO3vwHc2MOqLpnUYl5',
-  domain: 'bcgodfrey91.auth0.com'
-});
+var credentials = require('../../auth0')
+var lock = new Auth0Lock(credentials);
 import grabDataContainer from '../containers/grabDataContainer';
 
   class Login extends Component{
