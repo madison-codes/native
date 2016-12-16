@@ -73,7 +73,7 @@ var NavigationBarRouteMapper = {
   },
 
   Title(route, navigator, index, navState) {
-    return <Text style={ styles.navTitle }>BEN stinks</Text>
+    return <Text style={ styles.navTitle }>Native Hunt</Text>
   }
 };
 
