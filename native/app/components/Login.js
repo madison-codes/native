@@ -9,7 +9,6 @@ import {
 import Auth0Lock from 'react-native-lock';
 import userContainer from '../containers/userContainer';
 import Search from './Search';
-import grabDataContainer from '../containers/grabDataContainer';
 
 var credentials = require('../../auth0')
 var lock = new Auth0Lock(credentials);
