@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { getUser } from '../actions/userActions';
+import { actionCreators } from '../actions/userActions';
 
 const mapStateToProps = (state) => {
   return { user: state.user };
@@ -8,7 +8,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getUser: (user) => {
-      dispatch(getUser.getUser(data));
+      dispatch(actionCreators.getUser(user));
     }
   };
 };
