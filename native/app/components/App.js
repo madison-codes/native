@@ -33,10 +33,10 @@ export default class App extends Component {
         <Navigator style={styles.navigator}
           initialRoute={ routes[0] }
           initialRouteStack={ routes }
-          renderScene={(route, navigator) => {
+          renderScene={ (route, navigator) => {
             let RouteComponent = route.component;
             return (
-              <RouteComponent {...route} navigator={navigator} />
+              <RouteComponent {...route} navigator={ navigator } />
             )
           }}
           navigationBar={
@@ -53,8 +53,8 @@ var NavigationBarRouteMapper = {
   LeftButton(route, navigator, index, navState) {
     if(index > 0) {
       return (
-        <TouchableHighlight onPress={() => navigator.pop()}>
-          <Text style={styles.prevButton}>Prev</Text>
+        <TouchableHighlight onPress={ () => navigator.pop() }>
+          <Text style={ styles.prevButton }>Prev</Text>
         </TouchableHighlight>
       )
     }
@@ -64,8 +64,8 @@ var NavigationBarRouteMapper = {
   RightButton(route, navigator, index, navState) {
     if(index > 0) {
       return (
-        <TouchableHighlight onPress={() => navigator.push(routes[index + 1])}>
-          <Text style={styles.nextButton}>Next</Text>
+        <TouchableHighlight onPress={ () => navigator.push(routes[index + 1]) }>
+          <Text style={ styles.nextButton }>Next</Text>
         </TouchableHighlight>
       )
     }

@@ -9,13 +9,13 @@ import {
 
 export default class Visualization1 extends Component {
   constructor(props) {
-    super(props)
+    super(props);
   }
 
   render() {
     return (
       <View style={styles.loginMain}>
-        <Text >Visualization1</Text>
+        <Text>Visualization1</Text>
       </View>
     )
   }

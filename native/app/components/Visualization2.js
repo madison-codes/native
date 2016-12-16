@@ -9,7 +9,7 @@ import {
 
 export default class Visualization2 extends Component {
   constructor(props) {
-    super(props)
+    super(props);
   }
 
   render() {

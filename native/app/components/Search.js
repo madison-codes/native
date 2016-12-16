@@ -9,12 +9,12 @@ import {
 
 export default class Search extends Component {
   constructor(props) {
-    super(props)
+    super(props);
   }
 
   render() {
     return (
-      <View style={styles.loginMain}>
+      <View style={ styles.loginMain }>
         <Text>Search</Text>
       </View>
     )

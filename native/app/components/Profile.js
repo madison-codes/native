@@ -9,12 +9,12 @@ import {
 
 export default class Profile extends Component {
   constructor(props) {
-    super(props)
+    super(props);
   }
 
   render() {
     return (
-        <Text>Profile</Text>
+      <Text>Profile</Text>
     )
   }
 }
