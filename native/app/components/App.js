@@ -3,45 +3,100 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  Navigator,
+  TouchableHighlight
 } from 'react-native';
 
-export default class native extends Component {
+import Login from './Login';
+import Profile from './Profile';
+import Search from './Search';
+import Visualization1 from './Visualization1';
+import Visualization2 from './Visualization2';
+
+
+const routes = [
+  { component: Login, title: 'Login'},
+  { component: Search, title:  'Search'},
+  { component: Profile, title: 'Profile'},
+  { component: Visualization1, title: 'Visualization1'},
+  { component: Visualization2, title: 'Visualization2'}
+];
+
+export default class App extends Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Whatup dude! 
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
-      </View>
+      return (
+        <Navigator style={styles.navigator}
+          initialRoute={ routes[0] }
+          initialRouteStack={ routes }
+          renderScene={ (route, navigator) => {
+            let RouteComponent = route.component;
+            return (
+              <RouteComponent {...route} navigator={ navigator } />
+            )
+          }}
+          navigationBar={
+             <Navigator.NavigationBar
+               style={ styles.nav }
+               routeMapper={ NavigationBarRouteMapper } />
+             }
+        />
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+var NavigationBarRouteMapper = {
+  LeftButton(route, navigator, index, navState) {
+    if(index > 0) {
+      return (
+        <TouchableHighlight onPress={ () => navigator.pop() }>
+          <Text style={ styles.prevButton }>Prev</Text>
+        </TouchableHighlight>
+      )
+    }
+    else { return null }
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
 
-AppRegistry.registerComponent('native', () => native);
+  RightButton(route, navigator, index, navState) {
+    if(index > 0) {
+      return (
+        <TouchableHighlight onPress={ () => navigator.push(routes[index + 1]) }>
+          <Text style={ styles.nextButton }>Next</Text>
+        </TouchableHighlight>
+      )
+    }
+    else { return null }
+  },
+
+  Title(route, navigator, index, navState) {
+    return <Text style={ styles.navTitle }>Native Hunt</Text>
+  }
+};
+
+const styles = StyleSheet.create({
+  navigator: {
+    flex: 1,
+  },
+  navTitle: {
+    marginTop:4,
+    fontSize:16,
+  },
+  prevButton: {
+   	fontSize: 16,
+    marginLeft:15,
+    marginTop:2,
+  },
+  nextButton: {
+    fontSize: 16,
+    marginRight:15,
+    marginTop:2,
+  },
+  nav: {
+    height: 50,
+    backgroundColor: 'blue',
+  }
+});
