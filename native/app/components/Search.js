@@ -11,7 +11,8 @@ import {
   TextInput,
   Image,
   WebView,
-  ListView
+  ListView,
+  Linking
 } from 'react-native';
 
 import { client_id, client_secret, grant_type } from '../../env.json';
@@ -70,10 +71,19 @@ export default class Search extends Component {
   loadPosts() {
     return this.state.posts.map((post, i) => {
       return(
-        <View key={i}>
-          <Image source={{uri: post.thumbnail.image_url}} />
-          <Text>{ post.name }</Text>
-          <Text>{ post.tagline }</Text>
+        <View
+          key={i}
+          style={{width: 300, height: 50, borderColor: 'gray', borderWidth: 1}}
+          >
+            <Image
+              style={{width: 50, height: 50, marginLeft: 10 }}
+              source={{uri: `${post.thumbnail.image_url}`}}
+            />
+            <Text
+              style={{width: 50, height: 50, marginLeft: 100 }}
+            >
+            { post.name }
+            </Text>
         </View>
       )
     })
