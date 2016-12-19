@@ -9,6 +9,16 @@ import {
   ScrollView,
 } from 'react-native';
 
+import { client_id, client_secret, grant_type } from '../../env.json';
+
+const headerInfo = {
+  accept: "application/json",
+  "content-type": "application/json",
+  host: "api.producthunt.com"
+};
+
+let endPoint = "https://api.producthunt.com/v1/";
+
 export default class Search extends Component {
   constructor(props) {
     super(props);
@@ -19,46 +29,31 @@ export default class Search extends Component {
   }
 
   authenticate() {
-    console.log('called');
-    fetch('https://api.producthunt.com/v1/oauth/token', {
+    fetch(`${endPoint}oauth/token`, {
       method: "POST",
-      headers: {
-        accept: "application/json",
-        "content-type": "application/json",
-        host: "api.producthunt.com"
-      },
+      headers: headerInfo,
       body: JSON.stringify({
-        client_id: "76818cdee518ea2e11a731872d29fd98cdda7df202d8a6ab39ec01364b480885",
-        client_secret: "817c7d4e863a80918f77691530fe6cf8cf0a6d980bbd01a3d3971cdcafc8ce97",
-        grant_type: "client_credentials",
+        client_id: client_id,
+        client_secret: client_secret,
+        grant_type: grant_type,
       })
     })
-    .then((res) => {
-      return res.json()
-    })
-    .then((response) => {
-      this.setState({credentials: response})
-    })
-    .catch((err) => { console.log(err) })
+    .then((res) => { return res.json(); })
+    .then((response) => { this.setState({ credentials: response }); })
+    .catch((err) => { alert(err); })
   }
 
   getPosts() {
-    fetch('https://api.producthunt.com/v1/posts', {
+    fetch(`${endPoint}posts`, {
       method: "GET",
       headers: {
-        accept: "application/json",
-        "content-type": "application/json",
-        authorization: `Bearer ${this.state.credentials.access_token}`,
-        host: "api.producthunt.com"
+        headerInfo,
+        authorization: `Bearer ${this.state.credentials.access_token}`
       }
     })
-    .then((res) => {
-      return res.json()
-    })
-    .then((response) => {
-      this.setState({posts: response.posts})
-    })
-    .catch((err) => { console.log(err) })
+    .then((res) => { return res.json(); })
+    .then((response) => { this.setState({ posts: response.posts }); })
+    .catch((err) => { alert(err); })
   }
 
   loadPosts() {
