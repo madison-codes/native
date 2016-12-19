@@ -8,7 +8,10 @@ import {
   View,
   Button,
   ScrollView,
-  TextInput
+  TextInput,
+  Image,
+  WebView,
+  ListView
 } from 'react-native';
 
 import { client_id, client_secret, grant_type } from '../../env.json';
@@ -66,7 +69,13 @@ export default class Search extends Component {
 
   loadPosts() {
     return this.state.posts.map((post, i) => {
-      return( <Text key={i}>{post.name}</Text> )
+      return(
+        <View key={i}>
+          <Image source={{uri: post.thumbnail.image_url}} />
+          <Text>{ post.name }</Text>
+          <Text>{ post.tagline }</Text>
+        </View>
+      )
     })
   }
 
@@ -84,7 +93,9 @@ export default class Search extends Component {
           title='Get Posts'
           color='blue'
         />
-        { this.loadPosts() }
+        <ScrollView style={styles.ScrollView}>
+          { this.loadPosts() }
+        </ScrollView>
       </View>
     )
   }
@@ -92,9 +103,19 @@ export default class Search extends Component {
 
 const styles = StyleSheet.create({
   loginMain: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    // flex: 1,
+    // justifyContent: 'center',
+    // alignItems: 'center',
     backgroundColor: 'pink',
+    margin: 20,
+  },
+  postName: {
+    width: 100,
+    height: 100,
+  },
+  scrollView: {
+    top: 20,
+    backgroundColor: 'purple',
+    height: 400
   }
 });

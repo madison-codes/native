@@ -18,9 +18,9 @@ import Visualization2 from './Visualization2';
 const routes = [
   { component: Login, title: 'Login'},
   { component: Search, title:  'Search'},
-  { component: Profile, title: 'Profile'},
   { component: Visualization1, title: 'Visualization1'},
-  { component: Visualization2, title: 'Visualization2'}
+  { component: Visualization2, title: 'Visualization2'},
+  { component: Profile, title: 'Profile'}
 ];
 
 export default class App extends Component {
