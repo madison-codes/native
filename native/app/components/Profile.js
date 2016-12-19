@@ -6,11 +6,6 @@ import {
   View,
   Image,
   TouchableHighlight,
-  Alert,
-  TextInput,
-  ScrollView,
-  Switch,
-  Animated
 } from 'react-native'
 
 import userContainer from '../containers/userContainer'
