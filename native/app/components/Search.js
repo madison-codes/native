@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import connect from 'react-redux';
 import {
   AsyncStorage,
   StyleSheet,
@@ -7,64 +8,83 @@ import {
   View,
   Button,
   ScrollView,
+  TextInput,
+  Image,
+  WebView,
+  ListView,
+  Linking
 } from 'react-native';
+
+import { client_id, client_secret, grant_type } from '../../env.json';
+let endPoint = "https://api.producthunt.com/v1/";
+const headerInfo = {
+  accept: "application/json",
+  "content-type": "application/json",
+  host: "api.producthunt.com"
+};
+
+import postsContainer from '../containers/postsContainer';
+import userContainer from '../containers/userContainer';
 
 export default class Search extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      searchTerm: '',
       posts: [],
       credentials: {}
     }
   }
 
+  componentWillMount(){
+    this.authenticate();
+  }
+
   authenticate() {
-    console.log('called');
-    fetch('https://api.producthunt.com/v1/oauth/token', {
+    fetch(`${endPoint}oauth/token`, {
       method: "POST",
-      headers: {
-        accept: "application/json",
-        "content-type": "application/json",
-        host: "api.producthunt.com"
-      },
+      headers: headerInfo,
       body: JSON.stringify({
-        client_id: "76818cdee518ea2e11a731872d29fd98cdda7df202d8a6ab39ec01364b480885",
-        client_secret: "817c7d4e863a80918f77691530fe6cf8cf0a6d980bbd01a3d3971cdcafc8ce97",
-        grant_type: "client_credentials",
+        client_id: client_id,
+        client_secret: client_secret,
+        grant_type: grant_type,
       })
     })
-    .then((res) => {
-      return res.json()
-    })
-    .then((response) => {
-      this.setState({credentials: response})
-    })
-    .catch((err) => { console.log(err) })
+    .then((res) => { return res.json(); })
+    .then((response) => { this.setState({ credentials: response }); })
+    .catch((err) => { alert(err); })
   }
 
   getPosts() {
-    fetch('https://api.producthunt.com/v1/posts', {
+    fetch(`${endPoint}posts/all?search[topic]=${this.state.searchTerm.toLowerCase()}`, {
       method: "GET",
       headers: {
-        accept: "application/json",
-        "content-type": "application/json",
-        authorization: `Bearer ${this.state.credentials.access_token}`,
-        host: "api.producthunt.com"
+        headerInfo,
+        authorization: `Bearer ${this.state.credentials.access_token}`
       }
     })
-    .then((res) => {
-      return res.json()
-    })
-    .then((response) => {
-      this.setState({posts: response.posts})
-    })
-    .catch((err) => { console.log(err) })
+    .then((res) => { return res.json(); })
+    .then((response) => { this.setState({ posts: response.posts }); })
+    .catch((err) => { alert(err); })
   }
 
   loadPosts() {
     return this.state.posts.map((post, i) => {
       return(
-        <Text key={i}>{post.name}</Text>
+        <View
+          key={i}
+          style={{width: 300, height: 50, borderColor: 'gray', borderWidth: 1}}
+          >
+            <Image
+              style={{width: 50, height: 50, marginLeft: 10 }}
+              source={{uri: `${post.thumbnail.image_url}`}}
+            />
+            <Text
+              style={{width: 50, height: 50, marginLeft: 100 }}
+            >
+            { post.name }
+            </Text>
+        </View>
       )
     })
   }
@@ -73,17 +93,19 @@ export default class Search extends Component {
     return (
       <View style={ styles.loginMain }>
         <Text>Search</Text>
-        <Button
-          onPress={() => this.authenticate()}
-          title='Authenticate'
-          color='blue'
+        <TextInput
+          style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+          onChangeText={(searchTerm) => this.setState({searchTerm})}
+          value={this.state.searchTerm}
         />
         <Button
           onPress={() => this.getPosts()}
           title='Get Posts'
           color='blue'
         />
-        {this.loadPosts()}
+        <ScrollView style={styles.ScrollView}>
+          { this.loadPosts() }
+        </ScrollView>
       </View>
     )
   }
@@ -91,9 +113,19 @@ export default class Search extends Component {
 
 const styles = StyleSheet.create({
   loginMain: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'pink'
+    // flex: 1,
+    // justifyContent: 'center',
+    // alignItems: 'center',
+    backgroundColor: 'pink',
+    margin: 20,
+  },
+  postName: {
+    width: 100,
+    height: 100,
+  },
+  scrollView: {
+    top: 20,
+    backgroundColor: 'purple',
+    height: 400
   }
 });
