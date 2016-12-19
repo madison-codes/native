@@ -7,6 +7,8 @@ import {
   View,
 } from 'react-native';
 
+import postsContainer from '../containers/postsContainer';
+
 class Visualization1 extends Component {
   constructor(props) {
     super(props);
@@ -21,7 +23,7 @@ class Visualization1 extends Component {
   }
 }
 
-export default postsContainer(Vizualize1)
+export default postsContainer(Visualization1)
 
 const styles = StyleSheet.create({
   loginMain: {
