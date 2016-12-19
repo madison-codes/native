@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import connect from 'react-redux';
 import {
   AsyncStorage,
   StyleSheet,
@@ -7,25 +8,32 @@ import {
   View,
   Button,
   ScrollView,
+  TextInput
 } from 'react-native';
 
 import { client_id, client_secret, grant_type } from '../../env.json';
-
+let endPoint = "https://api.producthunt.com/v1/";
 const headerInfo = {
   accept: "application/json",
   "content-type": "application/json",
   host: "api.producthunt.com"
 };
 
-let endPoint = "https://api.producthunt.com/v1/";
+import postsContainer from '../containers/postsContainer';
+import userContainer from '../containers/userContainer';
 
 export default class Search extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      searchTerm: '',
       posts: [],
       credentials: {}
     }
+  }
+
+  componentWillMount(){
+    this.authenticate();
   }
 
   authenticate() {
@@ -44,7 +52,7 @@ export default class Search extends Component {
   }
 
   getPosts() {
-    fetch(`${endPoint}posts`, {
+    fetch(`${endPoint}posts/all?search[topic]=${this.state.searchTerm.toLowerCase()}`, {
       method: "GET",
       headers: {
         headerInfo,
@@ -58,9 +66,7 @@ export default class Search extends Component {
 
   loadPosts() {
     return this.state.posts.map((post, i) => {
-      return(
-        <Text key={i}>{post.name}</Text>
-      )
+      return( <Text key={i}>{post.name}</Text> )
     })
   }
 
@@ -68,17 +74,17 @@ export default class Search extends Component {
     return (
       <View style={ styles.loginMain }>
         <Text>Search</Text>
-        <Button
-          onPress={() => this.authenticate()}
-          title='Authenticate'
-          color='blue'
+        <TextInput
+          style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+          onChangeText={(searchTerm) => this.setState({searchTerm})}
+          value={this.state.searchTerm}
         />
         <Button
           onPress={() => this.getPosts()}
           title='Get Posts'
           color='blue'
         />
-        {this.loadPosts()}
+        { this.loadPosts() }
       </View>
     )
   }
@@ -89,6 +95,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'pink'
+    backgroundColor: 'pink',
   }
 });
