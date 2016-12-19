@@ -1,20 +1,63 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import {
-  AsyncStorage,
   StyleSheet,
   Text,
-  TouchableHighlight,
   View,
-} from 'react-native';
+  Image,
+  TouchableHighlight,
+  Alert,
+  TextInput,
+  ScrollView,
+  Switch,
+  Animated
+} from 'react-native'
 
-export default class Profile extends Component {
-  constructor(props) {
-    super(props);
-  }
+import userContainer from '../containers/userContainer'
 
-  render() {
+class Profile extends Component{
+  constructor (props) {
+   super(props)
+   this.state = {
+   }
+ }
+
+ render() {
+   const { user } = this.props;
     return (
-      <Text>Profile</Text>
+      <View style={styles.container}>
+        <Image style={styles.avatar} source={{uri: user.picture}} />
+        <Text style={ styles.title }>{ user.name }</Text>
+        <Text style={ styles.info }>{ user.email }</Text>
+      </View>
     )
   }
 }
+
+export default userContainer(Profile)
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'column',
+    backgroundColor: 'green',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    paddingTop: 200,
+  },
+  title: {
+    fontSize: 42,
+    margin: 20,
+    fontWeight: '300',
+  },
+  info: {
+    fontSize: 18,
+    margin: 20,
+    fontWeight: '100',
+  },
+  avatar: {
+    height: 150,
+    width: 150,
+    borderRadius: 75,
+  }
+});
