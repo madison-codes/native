@@ -26,12 +26,11 @@ const headerInfo = {
 import postsContainer from '../containers/postsContainer';
 import userContainer from '../containers/userContainer';
 
-export default class Search extends Component {
+class Search extends Component {
   constructor(props) {
     super(props);
     this.state = {
       searchTerm: '',
-      posts: [],
       credentials: {}
     }
   }
@@ -55,7 +54,8 @@ export default class Search extends Component {
     .catch((err) => { alert(err); })
   }
 
-  getPosts() {
+  fetchPosts() {
+    const { posts, getPosts } = this.props;
     fetch(`${endPoint}posts/all?search[topic]=${this.state.searchTerm.toLowerCase()}`, {
       method: "GET",
       headers: {
@@ -64,12 +64,12 @@ export default class Search extends Component {
       }
     })
     .then((res) => { return res.json(); })
-    .then((response) => { this.setState({ posts: response.posts }); })
+    .then((response) => getPosts(response.posts))
     .catch((err) => { alert(err); })
   }
 
   loadPosts() {
-    return this.state.posts.map((post, i) => {
+    return this.props.posts.map((post, i) => {
       return(
         <View
           key={i}
@@ -99,7 +99,7 @@ export default class Search extends Component {
           value={this.state.searchTerm}
         />
         <Button
-          onPress={() => this.getPosts()}
+          onPress={() => this.fetchPosts()}
           title='Get Posts'
           color='blue'
         />
@@ -110,6 +110,10 @@ export default class Search extends Component {
     )
   }
 }
+
+export default postsContainer(
+                userContainer(Search)
+              )
 
 const styles = StyleSheet.create({
   loginMain: {
