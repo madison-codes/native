@@ -16,13 +16,11 @@ import {
 
 export default class RatingChart extends Component{
   constructor (props) {
-   super(props)
-   this.state = {
-   }
+   super(props);
  }
 
  render() {
-   const {books} = this.props
+   const {books} = this.props;
 
    return (
      <View style={styles.bookChart}>
@@ -48,9 +46,15 @@ export default class RatingChart extends Component{
          scoreColor = '#9FFFCB'
        }
        return (
-         <View style={styles.bookChart} key={i}>
+         <View style={ styles.bookChart } key={ i }>
           <Animated.View
-            style={[{height: score, backgroundColor:scoreColor}, styles.bar, styles.barRating]} />
+            style={[
+              {
+                height: score,
+                backgroundColor:scoreColor
+              },
+            styles.bar, styles.barRating ]}
+          />
          </View>
        )}
      )}
@@ -72,7 +76,5 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 5,
     borderTopRightRadius: 5,
     marginLeft: 1,
-  },
-  barRating: {
   }
 });

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
 import {
   StyleSheet,
@@ -12,17 +12,15 @@ import {
   Switch,
   Animated,
   Easing
-} from 'react-native'
+} from 'react-native';
 
 export default class RatingChart extends Component{
   constructor (props) {
-   super(props)
-   this.state = {
-   }
+   super(props);
  }
 
  render() {
-   const {books} = this.props
+   const { posts } = this.props;
    return (
      <View style={styles.bookChart}>
      {this.props.posts.sort(function(a,b) {
@@ -36,9 +34,15 @@ export default class RatingChart extends Component{
          scoreColor = '#ffebcd'
        }
        return (
-         <View style={styles.bookChart} key={i}>
+         <View style={styles.postChart} key={i}>
           <Animated.View
-            style={[{height: 20, backgroundColor:scoreColor}, styles.bar, styles.barRating]} />
+            style={[
+              {
+                height: 20,
+                backgroundColor:scoreColor
+              },
+            styles.bar, styles.barRating]}
+          />
          </View>
        )}
      )}
@@ -48,7 +52,7 @@ export default class RatingChart extends Component{
 }
 
 const styles = StyleSheet.create({
-  bookChart: {
+  postChart: {
     top: 10,
     height: 100,
     flexDirection: 'row',

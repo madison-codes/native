@@ -6,11 +6,12 @@ import {
   TouchableHighlight,
   View,
 } from 'react-native';
+
 import Auth0Lock from 'react-native-lock';
 import userContainer from '../containers/userContainer';
 import Search from './Search';
 
-var credentials = require('../../auth0')
+var credentials = require('../../auth0');
 var lock = new Auth0Lock(credentials);
 
 class Login extends Component{
@@ -40,7 +41,7 @@ class Login extends Component{
     lock.show({
       }, (err, profile, token) => {
         if (err) {
-          console.log(err);
+          alert(err);
           return;
         }
         getUser(profile)
