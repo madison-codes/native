@@ -23,13 +23,12 @@ export default class RatingChart extends Component{
 
  render() {
    const {books} = this.props
-
    return (
      <View style={styles.bookChart}>
      {this.props.posts.sort(function(a,b) {
        let aScore = a.votes_count
        let bScore = b.votes_count
-       return bScore - aScore
+       return aScore - bScore
      }).map(function(post, i) {
        let score = post.votes_count
        if(score >= 100) {
@@ -50,7 +49,7 @@ export default class RatingChart extends Component{
        return (
          <View style={styles.bookChart} key={i}>
           <Animated.View
-            style={[{height: score,backgroundColor:scoreColor}, styles.bar, styles.barRating]} />
+            style={[{height: score, backgroundColor:scoreColor}, styles.bar, styles.barRating]} />
          </View>
        )}
      )}
