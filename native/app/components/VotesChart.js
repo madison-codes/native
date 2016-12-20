@@ -14,16 +14,14 @@ import {
   Easing
 } from 'react-native'
 
-export default class RatingChart extends Component{
+export default class VotesChart extends Component{
   constructor (props) {
    super(props)
-   this.state = {
-   }
  }
 
  render() {
    return (
-     <View style={styles.bookChart}>
+     <View style={styles.postChart}>
      {this.props.posts.sort(function(a,b) {
        let aScore = a.votes_count
        let bScore = b.votes_count
@@ -46,7 +44,7 @@ export default class RatingChart extends Component{
          scoreColor = '#40170A'
        }
        return (
-         <View style={styles.bookChart} key={i}>
+         <View style={styles.postChart} key={i}>
           <Animated.View
             style={[{height: score, backgroundColor:scoreColor}, styles.bar, styles.barRating]} />
          </View>
@@ -58,7 +56,7 @@ export default class RatingChart extends Component{
 }
 
 const styles = StyleSheet.create({
-  bookChart: {
+  postChart: {
     top: 10,
     height: 100,
     flexDirection: 'row',
