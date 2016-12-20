@@ -65,7 +65,8 @@ class Search extends Component {
     })
     .then((res) => { return res.json(); })
     .then((response) => getPosts(response.posts))
-    .catch((err) => { alert(err); })
+    .then(this.setState({ searchTerm: ''}))
+    .catch(() => { alert('Please try a different search term'); })
   }
 
   loadPosts() {
