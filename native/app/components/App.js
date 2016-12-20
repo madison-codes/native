@@ -13,7 +13,6 @@ import Profile from './Profile';
 import Search from './Search';
 import Visualization1 from './Visualization1';
 
-
 const routes = [
   { component: Login, title: 'Login'},
   { component: Search, title:  'Search'},
