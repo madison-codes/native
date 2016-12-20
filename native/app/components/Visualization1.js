@@ -17,9 +17,9 @@ class Visualization1 extends Component {
 
   render() {
     return (
-      // <View style={styles.loginMain}>
-        <VotesChart>Visualization1</VotesChart>
-      // </View>
+      <View style={styles.loginMain}>
+        <VotesChart posts={ this.props.posts } />
+      </View>
     )
   }
 }

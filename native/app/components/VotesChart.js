@@ -13,36 +13,29 @@ import {
 import { Bar } from 'react-native-pathjs-charts';
 
 class VotesChart extends Component {
- render(){
-   let data = [
-     [{
-       "v": 49,
-       "name": "apple"
-     }, {
-       "v": 42,
-       "name": "apple"
-     }],
-     [{
-       "v": 69,
-       "name": "banana"
-     }, {
-       "v": 62,
-       "name": "banana"
-     }],
-     [{
-       "v": 29,
-       "name": "grape"
-     }, {
-       "v": 15,
-       "name": "grape"
-     }]
-   ];
+  constructor(props){
+    super(props);
+    this.state = {
+      toRender: []
+    };
+  }
 
+  filterData(){
+    const { posts } = this.props;
+      (this.props.posts).map((post) => {
+        this.state.toRender.push([{
+        id: post.id,
+        votes: post.votes_count
+      }]);
+    });
+  }
+
+ render(){
   let options = {
     width: 300,
     height: 300,
     margin: {
-      top: 20,
+      top: 100,
       left: 25,
       bottom: 50,
       right: 20
@@ -84,15 +77,18 @@ class VotesChart extends Component {
     }
   };
 
-   return(
-     <View>
-       <Bar
-        data={ data }
+  return(
+    <View>
+      <Bar
+        data={ this.props.posts.map(post => {
+              return [[{ "id": post.id, "votes": post.votes_count }]];
+            })
+          }
         options={ options }
-        accessorKey='v'
+        accessorKey= 'id'
       />
     </View>
-   )
+  )
  }
 }
 

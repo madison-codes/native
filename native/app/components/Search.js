@@ -32,7 +32,7 @@ class Search extends Component {
     this.state = {
       searchTerm: '',
       credentials: {}
-    }
+    };
   }
 
   componentWillMount(){
