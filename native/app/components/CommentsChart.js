@@ -16,16 +16,13 @@ import {
 
 export default class RatingChart extends Component{
   constructor (props) {
-   super(props)
-   this.state = {
-   }
+   super(props);
  }
 
  render() {
-   const {books} = this.props
    return (
      <View style={styles.bookChart}>
-     {this.props.posts.sort(function(a,b) {
+     { this.props.posts.sort(function(a,b) {
        let aScore = a.comments_count
        let bScore = b.comments_count
        return aScore - bScore
@@ -41,9 +38,9 @@ export default class RatingChart extends Component{
          scoreColor = '#E55223'
        }
        return (
-         <View style={styles.bookChart} key={i}>
+         <View style={ styles.bookChart } key={ i }>
           <Animated.View
-            style={[{height: score, backgroundColor:scoreColor}, styles.bar, styles.barRating]} />
+            style={[{ height: score, backgroundColor:scoreColor }, styles.bar, styles.barRating]} />
          </View>
        )}
      )}

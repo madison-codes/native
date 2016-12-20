@@ -17,12 +17,9 @@ import {
 export default class RatingChart extends Component{
   constructor (props) {
    super(props);
-   this.state = {
-   }
  }
 
  render() {
-   const {books} = this.props
    return (
      <View style={styles.bookChart}>
      {this.props.posts.sort(function(a,b) {

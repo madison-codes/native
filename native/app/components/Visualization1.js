@@ -34,7 +34,7 @@ class Visualization1 extends Component {
           />
           <Text style={ styles.font }>Votes</Text>
           <VotesChart
-          posts={ this.props.posts }
+          posts={ this.props.posts.toJS() }
           style={ styles.chart }
           />
         </ScrollView>
