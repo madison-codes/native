@@ -26,7 +26,7 @@ class Visualization1 extends Component {
         <VotesChart posts={this.props.posts} />
         <Text style={styles.font}>Comments</Text>
         <CommentsChart posts={this.props.posts} />
-        <Text style={styles.font}>Created</Text>
+        <Text style={styles.font}>Made by User</Text>
         <CreatedChart posts={this.props.posts} />
       </View>
     )
@@ -45,5 +45,9 @@ const styles = StyleSheet.create({
   font: {
     color: 'white',
     fontSize: 32
+  },
+  description: {
+    color: 'white',
+    fontSize: 16
   }
 });

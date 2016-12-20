@@ -23,6 +23,7 @@ export default class RatingChart extends Component{
 
  render() {
    const {books} = this.props
+
    return (
      <View style={styles.bookChart}>
      {this.props.posts.sort(function(a,b) {

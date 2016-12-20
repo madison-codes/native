@@ -25,11 +25,15 @@ export default class RatingChart extends Component{
    const {books} = this.props
    return (
      <View style={styles.bookChart}>
-     {this.props.posts.map(function(post, i) {
+     {this.props.posts.sort(function(a,b) {
+       let aScore = a.maker_inside
+       let bScore = b.maker_inside
+       return bScore - aScore
+      }).map(function(post, i) {
        if(post.maker_inside) {
-         scoreColor = 'blue'
+         scoreColor = 'red'
        } else {
-         scoreColor = 'green'
+         scoreColor = '#ffebcd'
        }
        return (
          <View style={styles.bookChart} key={i}>
@@ -56,7 +60,5 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 5,
     borderTopRightRadius: 5,
     marginLeft: 1,
-  },
-  barRating: {
   }
 });
