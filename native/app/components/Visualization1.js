@@ -10,6 +10,8 @@ import {
 import postsContainer from '../containers/postsContainer';
 import VotesChart from './VotesChart'
 import CommentsChart from './CommentsChart'
+import CreatedChart from './CreatedChart'
+
 
 
 class Visualization1 extends Component {
@@ -24,6 +26,8 @@ class Visualization1 extends Component {
         <VotesChart posts={this.props.posts} />
         <Text style={styles.font}>Comments</Text>
         <CommentsChart posts={this.props.posts} />
+        <Text style={styles.font}>Created</Text>
+        <CreatedChart posts={this.props.posts} />
       </View>
     )
   }
