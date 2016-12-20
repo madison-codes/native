@@ -1,8 +1,7 @@
 import * as types from '../actions/actionTypes';
+import Immutable from 'immutable';
 
-const initalState = {
-  user: {}
-};
+const initalState = Immutable.Map({});
 
 const user = (state = initalState, action) => {
   const { user } = state;
@@ -10,12 +9,10 @@ const user = (state = initalState, action) => {
 
   switch(type) {
      case 'GET_USER':
-     return {
-       ...state,
-       user: data
-      }
+     return Immutable.Map(data);
 
-  }
-       return state;
-}
-export default user
+   }
+   return state;
+ };
+
+ export default user
