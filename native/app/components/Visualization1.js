@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 
 import postsContainer from '../containers/postsContainer';
+import VotesChart from './VotesChart';
 
 class Visualization1 extends Component {
   constructor(props) {
@@ -16,9 +17,9 @@ class Visualization1 extends Component {
 
   render() {
     return (
-      <View style={styles.loginMain}>
-        <Text>Visualization1</Text>
-      </View>
+      // <View style={styles.loginMain}>
+        <VotesChart>Visualization1</VotesChart>
+      // </View>
     )
   }
 }
