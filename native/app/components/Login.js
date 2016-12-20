@@ -36,14 +36,13 @@ class Login extends Component{
   }
 
   onLogin() {
-    const { getUser } = this.props
     lock.show({
       }, (err, profile, token) => {
         if (err) {
           alert(err);
           return;
         }
-        getUser(profile)
+        this.props.getUser(profile)
         this.props.navigator.push({
           component: Search,
           title: 'Search for products',
