@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 
 import postsContainer from '../containers/postsContainer';
+import VotesChart from './VotesChart'
 
 class Visualization1 extends Component {
   constructor(props) {
@@ -18,6 +19,7 @@ class Visualization1 extends Component {
     return (
       <View style={styles.loginMain}>
         <Text>Visualization1</Text>
+        <VotesChart posts={this.props.posts} />
       </View>
     )
   }
@@ -30,6 +32,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'red'
+    backgroundColor: 'black'
   }
 });
