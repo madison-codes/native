@@ -22,17 +22,17 @@ class Visualization1 extends Component {
     return (
       <View style={ styles.loginMain }>
         <ScrollView style={ styles.scroll }>
-          <Text style={ styles.font }>Made by User</Text>
+          <Text style={ styles.font }>User vs Company</Text>
           <CreatedChart
-          posts={ this.props.posts }
+          posts={ this.props.posts.toJS() }
           style={ styles.chart }
           />
-          <Text style={ styles.font }>Comments</Text>
+          <Text style={ styles.font }>Number of Comments</Text>
           <CommentsChart
-            posts={ this.props.posts }
+            posts={ this.props.posts.toJS() }
             style={ styles.chart }
           />
-          <Text style={ styles.font }>Votes</Text>
+          <Text style={ styles.font }>Number of Votes</Text>
           <VotesChart
           posts={ this.props.posts.toJS() }
           style={ styles.chart }

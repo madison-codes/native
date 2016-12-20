@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
     borderRadius: 3,
     borderWidth: 1,
     borderColor: '#999999',
-    marginTop: 10,
+    marginTop: 10
   },
   postName: {
     width: 100,
