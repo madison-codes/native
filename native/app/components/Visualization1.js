@@ -43,6 +43,7 @@ class Visualization1 extends Component {
   }
 }
 
+
 export default postsContainer(Visualization1)
 
 const styles = StyleSheet.create({

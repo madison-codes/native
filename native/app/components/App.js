@@ -59,7 +59,7 @@ var NavigationBarRouteMapper = {
   },
 
   RightButton(route, navigator, index, navState) {
-    if(index > 0) {
+    if(index > 0 && index < 3) {
       return (
         <TouchableHighlight onPress={ () => navigator.push(routes[index + 1]) }>
           <Text style={ styles.nextButton }>Next</Text>
