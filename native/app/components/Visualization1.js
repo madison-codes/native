@@ -8,6 +8,11 @@ import {
 } from 'react-native';
 
 import postsContainer from '../containers/postsContainer';
+import VotesChart from './VotesChart'
+import CommentsChart from './CommentsChart'
+import CreatedChart from './CreatedChart'
+
+
 
 class Visualization1 extends Component {
   constructor(props) {
@@ -17,7 +22,12 @@ class Visualization1 extends Component {
   render() {
     return (
       <View style={styles.loginMain}>
-        <Text>Visualization1</Text>
+        <Text style={styles.font}>Votes</Text>
+        <VotesChart posts={this.props.posts} />
+        <Text style={styles.font}>Comments</Text>
+        <CommentsChart posts={this.props.posts} />
+        <Text style={styles.font}>Made by User</Text>
+        <CreatedChart posts={this.props.posts} />
       </View>
     )
   }
@@ -30,6 +40,14 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'red'
+    backgroundColor: 'black'
+  },
+  font: {
+    color: 'white',
+    fontSize: 32
+  },
+  description: {
+    color: 'white',
+    fontSize: 16
   }
 });
