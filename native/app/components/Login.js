@@ -37,7 +37,6 @@ class Login extends Component{
 
   onLogin() {
     const { getUser } = this.props
-
     lock.show({
       }, (err, profile, token) => {
         if (err) {

@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import { actionCreators } from '../actions/postActions';
 
 const mapStateToProps = (state) => {
-  return { posts: state.posts.posts };
+  return { posts: state.posts };
 };
 
 const mapDispatchToProps = (dispatch) => {

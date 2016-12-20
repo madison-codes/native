@@ -5,6 +5,7 @@ import {
   Text,
   TouchableHighlight,
   View,
+  ScrollView
 } from 'react-native';
 
 import postsContainer from '../containers/postsContainer';
@@ -20,16 +21,28 @@ class Visualization1 extends Component {
   render() {
     return (
       <View style={ styles.loginMain }>
-        <Text style={ styles.font }>Votes</Text>
-        <VotesChart posts={ this.props.posts } />
-        <Text style={ styles.font }>Comments</Text>
-        <CommentsChart posts={ this.props.posts } />
-        <Text style={ styles.font }>Made by User</Text>
-        <CreatedChart posts={ this.props.posts } />
+        <ScrollView style={ styles.scroll }>
+          <Text style={ styles.font }>Made by User</Text>
+          <CreatedChart
+          posts={ this.props.posts }
+          style={ styles.chart }
+          />
+          <Text style={ styles.font }>Comments</Text>
+          <CommentsChart
+            posts={ this.props.posts }
+            style={ styles.chart }
+          />
+          <Text style={ styles.font }>Votes</Text>
+          <VotesChart
+          posts={ this.props.posts.toJS() }
+          style={ styles.chart }
+          />
+        </ScrollView>
       </View>
     )
   }
 }
+
 
 export default postsContainer(Visualization1)
 
@@ -38,14 +51,14 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'black'
+    backgroundColor: 'white'
   },
   font: {
-    color: 'white',
-    fontSize: 32
+    color: '#000',
+    fontSize: 32,
+    marginTop: 50,
   },
-  description: {
-    color: 'white',
-    fontSize: 16
+  scroll: {
+    marginTop: 50
   }
 });

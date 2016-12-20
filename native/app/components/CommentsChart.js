@@ -16,46 +16,31 @@ import {
 
 export default class RatingChart extends Component{
   constructor (props) {
-   super(props)
-   this.state = {
-   }
+   super(props);
  }
 
  render() {
-   const { posts } = this.props
    return (
      <View style={styles.bookChart}>
-     {this.props.posts.sort(function(a,b) {
+     { this.props.posts.sort(function(a,b) {
        let aScore = a.comments_count
        let bScore = b.comments_count
        return aScore - bScore
      }).map(function(post, i) {
        let score = post.comments_count
-       if(score >= 25) {
-         scoreColor = 'blue'
+       if(score >= 10) {
+         scoreColor = '#40170A'
        }
-       if(score > 20 && score < 25) {
-         scoreColor = 'green'
+       if(score > 5 && score < 10) {
+         scoreColor = '#7F2E14'
        }
-       if(score > 15 && score < 20) {
-         scoreColor = 'yellow'
-       }
-       if(score > 10 && score < 15) {
-         scoreColor = 'orange'
-       }
-       if(score < 10) {
-         scoreColor = 'red'
+       if(score < 5) {
+         scoreColor = '#E55223'
        }
        return (
-         <View style={styles.postChart} key={i}>
+         <View style={ styles.bookChart } key={ i }>
           <Animated.View
-            style={
-              [{
-                height: score,
-                backgroundColor:scoreColor
-              },
-              styles.bar, styles.barRating]}
-          />
+            style={[{ height: score, backgroundColor:scoreColor }, styles.bar, styles.barRating]} />
          </View>
        )}
      )}
@@ -65,7 +50,7 @@ export default class RatingChart extends Component{
 }
 
 const styles = StyleSheet.create({
-  postChart: {
+  bookChart: {
     top: 10,
     height: 100,
     flexDirection: 'row',

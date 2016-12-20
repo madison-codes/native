@@ -13,7 +13,6 @@ import Profile from './Profile';
 import Search from './Search';
 import Visualization1 from './Visualization1';
 
-
 const routes = [
   { component: Login, title: 'Login'},
   { component: Search, title:  'Search'},
@@ -28,7 +27,7 @@ export default class App extends Component {
 
   render() {
       return (
-        <Navigator style={styles.navigator}
+        <Navigator style={ styles.navigator }
           initialRoute={ routes[0] }
           initialRouteStack={ routes }
           renderScene={ (route, navigator) => {
@@ -60,7 +59,7 @@ var NavigationBarRouteMapper = {
   },
 
   RightButton(route, navigator, index, navState) {
-    if(index > 0) {
+    if(index > 0 && index < 3) {
       return (
         <TouchableHighlight onPress={ () => navigator.push(routes[index + 1]) }>
           <Text style={ styles.nextButton }>Next</Text>

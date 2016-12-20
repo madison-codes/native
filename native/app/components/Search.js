@@ -55,7 +55,6 @@ class Search extends Component {
   }
 
   fetchPosts() {
-    const { posts, getPosts } = this.props;
     fetch(`${endPoint}posts/all?search[topic]=${this.state.searchTerm.toLowerCase()}`, {
       method: "GET",
       headers: {
@@ -64,12 +63,13 @@ class Search extends Component {
       }
     })
     .then((res) => { return res.json(); })
-    .then((response) => getPosts(response.posts))
-    .catch((err) => { alert(err); })
+    .then((response) => this.props.getPosts(response.posts))
+    .then(this.setState({ searchTerm: ''}))
+    .catch(() => { alert('Please try a different search term'); })
   }
 
   loadPosts() {
-    return this.props.posts.map((post, i) => {
+    return this.props.posts.toJS().map((post, i) => {
       return(
         <View
           key={i}

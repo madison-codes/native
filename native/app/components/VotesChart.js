@@ -16,12 +16,12 @@ import {
 
 export default class RatingChart extends Component{
   constructor (props) {
-   super(props);
+   super(props)
+   this.state = {
+   }
  }
 
  render() {
-   const {books} = this.props;
-
    return (
      <View style={styles.bookChart}>
      {this.props.posts.sort(function(a,b) {
@@ -31,7 +31,7 @@ export default class RatingChart extends Component{
      }).map(function(post, i) {
        let score = post.votes_count
        if(score >= 100) {
-         scoreColor = '#7AE582'
+         scoreColor = '#E55223'
        }
        if(score > 75 && score < 100) {
          scoreColor = '#004E64'
@@ -40,21 +40,15 @@ export default class RatingChart extends Component{
          scoreColor = '#25A18E'
        }
        if(score > 25 && score < 50) {
-         scoreColor = '#00A5CF'
+         scoreColor = '#7F2E14'
        }
        if(score < 25) {
-         scoreColor = '#9FFFCB'
+         scoreColor = '#40170A'
        }
        return (
-         <View style={ styles.bookChart } key={ i }>
+         <View style={styles.bookChart} key={i}>
           <Animated.View
-            style={[
-              {
-                height: score,
-                backgroundColor:scoreColor
-              },
-            styles.bar, styles.barRating ]}
-          />
+            style={[{height: score, backgroundColor:scoreColor}, styles.bar, styles.barRating]} />
          </View>
        )}
      )}
@@ -76,5 +70,7 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 5,
     borderTopRightRadius: 5,
     marginLeft: 1,
+  },
+  barRating: {
   }
 });
