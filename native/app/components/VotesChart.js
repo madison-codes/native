@@ -46,7 +46,7 @@ export default class VotesChart extends Component{
        return (
          <View style={styles.postChart} key={i}>
           <Animated.View
-            style={[{height: score, backgroundColor:scoreColor}, styles.bar, styles.barRating]} />
+            style={[{height: score/2, backgroundColor:scoreColor}, styles.bar, styles.barRating]} />
          </View>
        )}
      )}

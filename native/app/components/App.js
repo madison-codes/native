@@ -70,7 +70,7 @@ var NavigationBarRouteMapper = {
   },
 
   Title(route, navigator, index, navState) {
-    return <Text style={ styles.navTitle }>Native Hunt</Text>
+    return <Text style={ styles.navTitle }>Data Hunt</Text>
   }
 };
 

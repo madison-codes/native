@@ -23,7 +23,7 @@ class Login extends Component{
     return (
       <View style={ styles.container }>
         <View style={ styles.messageBox }>
-          <Text style={ styles.title }>Native Hunt</Text>
+          <Text style={ styles.title }>Data Hunt</Text>
         </View>
         <TouchableHighlight
           style={ styles.signInButton }
