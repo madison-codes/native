@@ -31,19 +31,13 @@ export default class RatingChart extends Component{
        return aScore - bScore
      }).map(function(post, i) {
        let score = post.comments_count
-       if(score >= 25) {
-         scoreColor = 'blue'
+       if(score >= 10) {
+         scoreColor = '#40170A'
        }
-       if(score > 20 && score < 25) {
-         scoreColor = 'green'
+       if(score > 5 && score < 10) {
+         scoreColor = '#7F2E14'
        }
-       if(score > 15 && score < 20) {
-         scoreColor = 'yellow'
-       }
-       if(score > 10 && score < 15) {
-         scoreColor = 'orange'
-       }
-       if(score < 10) {
+       if(score < 5) {
          scoreColor = '#E55223'
        }
        return (
