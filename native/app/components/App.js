@@ -12,14 +12,12 @@ import Login from './Login';
 import Profile from './Profile';
 import Search from './Search';
 import Visualization1 from './Visualization1';
-import Visualization2 from './Visualization2';
 
 
 const routes = [
   { component: Login, title: 'Login'},
   { component: Search, title:  'Search'},
   { component: Visualization1, title: 'Visualization1'},
-  { component: Visualization2, title: 'Visualization2'},
   { component: Profile, title: 'Profile'}
 ];
 
@@ -97,6 +95,6 @@ const styles = StyleSheet.create({
   },
   nav: {
     height: 50,
-    backgroundColor: 'blue',
+    backgroundColor: '#4285F4',
   }
 });

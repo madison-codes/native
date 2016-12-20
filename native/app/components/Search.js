@@ -32,7 +32,7 @@ class Search extends Component {
     this.state = {
       searchTerm: '',
       credentials: {}
-    }
+    };
   }
 
   componentWillMount(){
@@ -73,15 +73,12 @@ class Search extends Component {
       return(
         <View
           key={i}
-          style={{width: 300, height: 50, borderColor: 'gray', borderWidth: 1}}
-          >
+          style={{ height: 70 }}>
             <Image
-              style={{width: 50, height: 50, marginLeft: 10 }}
-              source={{uri: `${post.thumbnail.image_url}`}}
-            />
+              style={ styles.searchItemImg }
+              source={{ uri: `${post.thumbnail.image_url}` }}/>
             <Text
-              style={{width: 50, height: 50, marginLeft: 100 }}
-            >
+              style={ styles.searchItemTitle}>
             { post.name }
             </Text>
         </View>
@@ -91,19 +88,18 @@ class Search extends Component {
 
   render() {
     return (
-      <View style={ styles.loginMain }>
-        <Text>Search</Text>
+      <View style={ styles.searchMain }>
+        <Text>Search for Products</Text>
         <TextInput
-          style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-          onChangeText={(searchTerm) => this.setState({searchTerm})}
-          value={this.state.searchTerm}
+          style={ styles.searchInput }
+          onChangeText={ (searchTerm) => this.setState({ searchTerm })}
+          value={ this.state.searchTerm }
         />
         <Button
-          onPress={() => this.fetchPosts()}
+          onPress={ () => this.fetchPosts() }
           title='Get Posts'
-          color='blue'
         />
-        <ScrollView style={styles.ScrollView}>
+        <ScrollView style={ styles.ScrollView }>
           { this.loadPosts() }
         </ScrollView>
       </View>
@@ -116,12 +112,17 @@ export default postsContainer(
               )
 
 const styles = StyleSheet.create({
-  loginMain: {
-    // flex: 1,
-    // justifyContent: 'center',
-    // alignItems: 'center',
-    backgroundColor: 'pink',
+  searchMain: {
+    backgroundColor: '#fff',
     margin: 20,
+    marginTop: 75,
+  },
+  searchInput: {
+    height: 55,
+    borderRadius: 3,
+    borderWidth: 1,
+    borderColor: '#999999',
+    marginTop: 10,
   },
   postName: {
     width: 100,
@@ -129,7 +130,17 @@ const styles = StyleSheet.create({
   },
   scrollView: {
     top: 20,
-    backgroundColor: 'purple',
     height: 400
+  },
+  searchItemImg: {
+    width: 50,
+    height: 50,
+    marginLeft: 10
+  },
+  searchItemTitle: {
+    width: 300,
+    height: 50,
+    marginLeft: 70,
+    marginTop: -35,
   }
 });

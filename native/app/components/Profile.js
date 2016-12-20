@@ -1,27 +1,25 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import {
   StyleSheet,
   Text,
   View,
   Image,
   TouchableHighlight,
-} from 'react-native'
+} from 'react-native';
 
-import userContainer from '../containers/userContainer'
+import userContainer from '../containers/userContainer';
 
 class Profile extends Component{
   constructor (props) {
-   super(props)
-   this.state = {
-   }
+   super(props);
  }
 
  render() {
    const { user } = this.props;
     return (
-      <View style={styles.container}>
-        <Image style={styles.avatar} source={{uri: user.picture}} />
+      <View style={ styles.container }>
+        <Image style={ styles.avatar } source={{ uri: user.picture }} />
         <Text style={ styles.title }>{ user.name }</Text>
         <Text style={ styles.info }>{ user.email }</Text>
       </View>
@@ -35,7 +33,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-    backgroundColor: 'green',
     justifyContent: 'flex-start',
     alignItems: 'center',
     paddingTop: 200,

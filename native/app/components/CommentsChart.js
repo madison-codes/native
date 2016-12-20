@@ -22,7 +22,7 @@ export default class RatingChart extends Component{
  }
 
  render() {
-   const {books} = this.props
+   const { posts } = this.props
    return (
      <View style={styles.bookChart}>
      {this.props.posts.sort(function(a,b) {
@@ -47,9 +47,15 @@ export default class RatingChart extends Component{
          scoreColor = 'red'
        }
        return (
-         <View style={styles.bookChart} key={i}>
+         <View style={styles.postChart} key={i}>
           <Animated.View
-            style={[{height: score, backgroundColor:scoreColor}, styles.bar, styles.barRating]} />
+            style={
+              [{
+                height: score,
+                backgroundColor:scoreColor
+              },
+              styles.bar, styles.barRating]}
+          />
          </View>
        )}
      )}
@@ -59,7 +65,7 @@ export default class RatingChart extends Component{
 }
 
 const styles = StyleSheet.create({
-  bookChart: {
+  postChart: {
     top: 10,
     height: 100,
     flexDirection: 'row',
@@ -71,7 +77,5 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 5,
     borderTopRightRadius: 5,
     marginLeft: 1,
-  },
-  barRating: {
   }
 });
